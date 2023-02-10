@@ -1,12 +1,12 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
-  </p>
-
+<div class="col-xl-3 col-md-6 col-sm-12 mb-3" id="<%= dom_id article %>">
+  <div class="card">
+    <div class="text-center">
+      <%= image_tag("products/#{article.image}", :alt => article.image , :class => "img-fluid rounded articles-img") %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= article.title %></h5>
+      <p class="card-text articles-desc"><%= article.description %></p>
+      <%= link_to "Xem chi tiết....", article, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>

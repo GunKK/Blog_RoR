@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Articles</h1>
-
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to "Show this article", article %>
-    </p>
-  <% end %>
+<div class="container mt-5 mb-5">
+  <h1 class="text-center mt-3 mb-3">Danh sách bài viết</h1>
+  
+  <div class="row mb-3" style="width: 100px">
+    <%= link_to "Thêm", new_article_path, class: "btn btn-primary d-block"%></div>
+  <div id="articles" class="row">
+    <% @articles.each do |article| %>
+      <%= render article %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New article", new_article_path %>
