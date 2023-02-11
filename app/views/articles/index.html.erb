@@ -1,0 +1,30 @@
+<% if notice.nil? == false %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<div class="container mt-5 mb-5">
+    <div class="row mt-3 mb-3">
+        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> > Bài viết 
+    </div>
+
+  <h1 class="text-center mt-3 mb-3">Danh sách bài viết</h1>
+  
+<div class="row mb-3" style="width: 100px">
+    <%= link_to "Thêm", new_article_path, class: "btn btn-primary d-block"%></div>
+    <div id="articles" class="row">
+        <% @articles.each do |article| %>
+            <div class="col-xl-3 col-md-6 col-sm-12 mb-3" id="<%= dom_id article %>">
+                <div class="card">
+                    <div class="text-center">
+                        <%= image_tag("products/go.jpg", :alt => "demo" , :class => "img-fluid rounded articles-img") %>
+                    </div>
+                    <div class="card-body">
+                    <h5 class="card-title"><%= article.title %></h5>
+                    <p class="card-text articles-desc"><%= article.description %></p>
+                    <%= link_to "Xem chi tiết....", article, class: "btn btn-primary" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

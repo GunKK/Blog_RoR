@@ -1,0 +1,26 @@
+<div class="container mt-5 mb-5">
+    <% if notice.nil? == false %>
+        <div class="alert alert-success row"><%= notice %></div>
+    <% end %>
+
+    <div class="row mt-3 mb-3">
+        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> >
+        <%= link_to "Bài viết", articles_path, class: "text-decoration-none", style: "display: contents" %> 
+        > bài viết #<%= @article.id %> 
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-md-12">
+            <%= image_tag("products/go.jpg", :alt => "demo" , :class => "img-fluid rounded articles-img") %>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <p class="h6"><%= @article.title %></p>
+            <p><%= @article.description %></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <%# Lỗi không hiện box modal do chưa add jquery %>
+        <%= button_to "Xóa bài viết", @article, method: :delete, class: "btn btn-outline-danger", data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+    </div>
+</div>
