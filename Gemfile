@@ -27,6 +27,11 @@ gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
 
+gem 'sass-rails'
+
+# Add the Font Awesome Ruby gem
+gem "font-awesome-sass", "~> 6.3.0"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 

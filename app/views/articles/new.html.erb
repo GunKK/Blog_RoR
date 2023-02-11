@@ -1,9 +1,41 @@
-<h1>New article</h1>
+<div class="container mt-5 mb-5">
 
-<%= render "form", article: @article %>
+  <div class="row">
+    <h1 class="text-center">Tạo mới bài viết</h1>
+  </div>
 
-<br>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <% if @article.errors.any? %>
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
-<div>
-  <%= link_to "Back to articles", articles_path %>
+      <%= form_for @article do |f| %>
+        <p class="mb-3">
+          <%= f.label :title, class: "form-label" %><br/>
+          <%= f.text_field :title, class: "form-control" %>
+        </p>
+        <p class="mb-3">
+          <%= f.label :description, class: "form-label" %><br/>
+          <%= f.text_area :description, class: "form-control", :cols => 30, :rows => 10 %>
+        </p>
+        <p class="mb-3 text-center">
+          <%= f.submit class: "btn btn-success" %>
+        </p>
+
+      <% end %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to articles", articles_path, class: "btn btn-secondary" %>
+  </div>
 </div>

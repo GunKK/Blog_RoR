@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :articles
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "static_pages#home"
+  get 'contact', to: 'static_pages#contact', as: 'contact'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :articles, only: [:create, :destroy, :index, :new, :show]
 end
