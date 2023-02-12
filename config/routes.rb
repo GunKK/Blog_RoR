@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   get 'contact', to: 'static_pages#contact', as: 'contact'
 
   resources :articles
+
+  get 'sign_up', to: 'users#new'
+  
+  resource :users, except: [:new]
 end

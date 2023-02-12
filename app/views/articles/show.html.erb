@@ -1,3 +1,4 @@
+<% provide(:title, 'Chi tiết bài viết') %>
 <div class="container mt-5 mb-5">
     <% if notice.nil? == false %>
         <div class="alert alert-success row"><%= notice %></div>
@@ -15,7 +16,9 @@
         </div>
         <div class="col-xl-6 col-md-12">
             <p class="h6"><%= @article.title %></p>
+            <p class="text-secondary"><i class="fa-solid fa-user"></i> <%= @article.user.name %></p>
             <p><%= @article.description %></p>
+            <p class="text-success"><%= @article.updated_at.strftime("Cập nhật: %d-%m-%Y") %></p>
         </div>
     </div>
 

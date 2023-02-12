@@ -1,0 +1,42 @@
+<div class="container mt-5 mb-5">
+  <div class="row mb-3">
+    <h1 class="text-center">Đăng kí thành viên</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_for @user do |f| %>
+        <p class="mb-3">
+          <%= f.label :name, class: "form-label" %><br/>
+          <%= f.text_field :name, class: "form-control" %>
+        </p>
+        <p class="mb-3">
+          <%= f.label :email, class: "form-label" %><br/>
+          <%= f.email_field :email, class: "form-control" %>
+        </p>
+        <p class="mb-3">
+          <%= f.label :password, class: "form-label" %><br/>
+          <%= f.password_field :password, class: "form-control" %>
+        </p>
+        <p class="mb-3">
+          <%= f.label :re_password, class: "form-label" %><br/>
+          <%= f.password_field :re_password, class: "form-control" %>
+        </p>
+        <p class="mb-3 text-center">
+          <%= f.submit "Đăng kí", class: "btn btn-primary" %>
+        </p>
+
+      <% end %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
