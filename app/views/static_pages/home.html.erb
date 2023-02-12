@@ -1,6 +1,7 @@
 <% provide(:title, 'Blog') %>
 <%= render 'layouts/slider' %>
-<div class="container mb-5">
+
+<div class="container-fluid pt-5 pb-5 bg-light">
   <div class="row">
     <div class="col text-center">
       <h1 class="text-primary">Chào mừng đến với Blogo</h1>
@@ -9,5 +10,44 @@
       </p>
       <%= link_to "Đăng kí ngay", sign_up_path, class: "btn btn-outline-primary" %>
     </div>
+  </div>
+</div>
+
+<div class="container-fluid pt-5 pb-5 bg-light">
+  <div class="row">
+      <div class="col-xl-3 d-none d-xl-block d-xxl-none">
+      
+      </div>
+      <div class="col-xl-6">
+        <div class="container">
+          <% @articles.each do |article| %>
+            <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
+              <div class="article-info">
+                <span class="text-secondary h6"><%= article.user.name if article.user %></span> 
+                <small><%= time_ago_in_words(article.created_at) %> ago</small>
+              </div>
+
+              <div class="article-title">
+                <%= link_to article.title, article_path(article), class: "text-decoration-none" %>
+              </div>
+
+              <div class="article-body">
+                <%= truncate(article.description, length: 100) %>
+              </div>
+
+              <div class="article-reaction">
+                <button class="btn btn-light"><i class="fa-sharp fa-regular fa-thumbs-up"></i> Thích</button>
+                <button class="btn btn-light"><i class="fa-regular fa-comment"></i> Bình luận</button>
+                <button class="btn btn-light"><i class="fa-solid fa-share"></i> Chia sẻ</button>
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+      <div class="col-xl-3 d-none d-xl-block d-xxl-none">
+        
+      </div>
   </div>
 </div>

@@ -20,9 +20,9 @@
                         <%= image_tag("products/go.jpg", :alt => "demo" , :class => "img-fluid rounded articles-img") %>
                     </div>
                     <div class="card-body">
-                    <h5 class="card-title"><%= article.title %></h5>
-                    <p class="card-text articles-desc"><%= article.description %></p>
-                    <%= link_to "Xem chi tiết....", article, class: "btn btn-primary" %>
+                        <h5 class="card-title"><%= link_to "#{article.title}", article, class: "text-decoration-none" %></h5>
+                        <p class="card-text articles-desc"><%= article.description %></p>
+                        <span class="text-secondary"><i class="fa-solid fa-user"></i> <%= article.user.name %></span>
                     </div>
                 </div>
             </div>
