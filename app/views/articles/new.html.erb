@@ -4,34 +4,7 @@
     <h1 class="text-center">Tạo mới bài viết</h1>
   </div>
 
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-      <% if @article.errors.any? %>
-        <ul>
-          <% @article.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <%= form_for @article do |f| %>
-        <p class="mb-3">
-          <%= f.label :title, class: "form-label" %><br/>
-          <%= f.text_field :title, class: "form-control" %>
-        </p>
-        <p class="mb-3">
-          <%= f.label :description, class: "form-label" %><br/>
-          <%= f.text_area :description, class: "form-control", :cols => 30, :rows => 10 %>
-        </p>
-        <p class="mb-3 text-center">
-          <%= f.submit class: "btn btn-success" %>
-        </p>
-
-      <% end %>
-    </div>
-    <div class="col-4"></div>
-  </div>
+  <%= render 'form' %>
 
   <br>
 
