@@ -20,7 +20,12 @@
     </div>
 
     <div class="row">
-        <%# Lỗi không hiện box modal do chưa add jquery %>
-        <%= button_to "Xóa bài viết", @article, method: :delete, class: "btn btn-outline-danger", data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+        <div class="col">
+            <%= link_to "Cập nhật", edit_article_path(@article), class: "btn btn-warning"%>
+        </div>
+        <div class="col">
+            <%# Lỗi không hiện box modal do chưa add jquery %>
+            <%= button_to "Xóa bài viết", @article, method: :delete, class: "btn btn-outline-danger", data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+        </div>
     </div>
 </div>

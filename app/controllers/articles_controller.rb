@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-    # before_action :set_article, only: %i[ show destroy ] 
+    before_action :set_article, only: %i[ show destroy edit update] 
 
     def index 
         @articles = Article.all
@@ -21,11 +21,25 @@ class ArticlesController < ApplicationController
     end
 
     def show
-        @article = Article.find(params[:id])
+        # @article = Article.find(params[:id])
+    end
+
+    def edit
+        # @article = Article.find(params[:id])
+    end
+
+    def update
+        # @article = Article.find(params[:id])
+        if @article.update(article_params)
+            flash[:notice] = "Cập nhật thành công"
+            redirect_to article_path(@article)
+        else
+            render "edit" 
+        end
     end
 
     def destroy
-        @article = Article.find(params[:id])
+        # @article = Article.find(params[:id])
         @article.destroy
         flash[:notice] = "Đã xóa bài viết"
         redirect_to articles_path
@@ -33,9 +47,9 @@ class ArticlesController < ApplicationController
 
     private
 
-        # def set_article
-        #     @article = Article.find(params[:id])
-        # end
+        def set_article
+            @article = Article.find(params[:id])
+        end
 
         def article_params
             params.required(:article).permit(:title, :description)
