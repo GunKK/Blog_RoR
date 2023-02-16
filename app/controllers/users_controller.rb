@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user_articles = @user.articles.all
+    @user
   end
 
   def edit

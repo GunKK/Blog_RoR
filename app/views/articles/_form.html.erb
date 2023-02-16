@@ -10,7 +10,7 @@
     <% end %>
 
     <%= form_for @article do |f| %>
-      <%= f.hidden_field :user_id, value: :session[:user_id]%>
+      <%= f.hidden_field :post_id, :value => 1 %>
       <p class="mb-3">
         <%= f.label :title, class: "form-label" %><br/>
         <%= f.text_field :title, class: "form-control" %>
