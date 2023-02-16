@@ -26,28 +26,28 @@
           </div>
         </form>
         <ul class="nav navbar-nav pull-right">
+          <% if session[:user_id].nil? %>
             <li class="nav-item">
               <%= link_to "Đăng kí", sign_up_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Đăng nhập</a>
+              <%= link_to "Đăng nhập", login_path, class: "nav-link" %>
             </li>
-            <%# <li class="nav-item">
+          <% else %>
+            <li class="nav-item">
               <div class="dropdown">
                 <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Nguyễn Đức Hậu
+                  <%= session[:name] %>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Tài khoản</a></li>
+                  <li><a class="dropdown-item" href="#">Cài đặt</a></li>
                   <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
                   <li><a class="dropdown-item" href="#">Thanh toán</a></li>
-                  <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                  <li><%= link_to "Đăng xuất", logout_path, method: :delete, class: "dropdown-item" %></li>
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Đăng xuất</a>
-            </li> %>
+            <% end %>
         </ul>
       </div>
   </div>

@@ -3,29 +3,62 @@
   <div class="alert alert-success"><%= notice %></div>
 <% end %>
 
-<div class="container mt-5 mb-5">
-    <div class="row mt-3 mb-3">
+<div class="container-fluid mt-5 mb-5">
+    <div class="row mt-3 mb-3 ms-5">
         <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> > Bài viết 
     </div>
 
   <h1 class="text-center mt-3 mb-3">Danh sách bài viết</h1>
-  
-<div class="row mb-3" style="width: 100px">
-    <%= link_to "Thêm", new_article_path, class: "btn btn-primary d-block"%></div>
-    <div id="articles" class="row">
-        <% @articles.each do |article| %>
-            <div class="col-xl-3 col-md-6 col-sm-12 mb-3" id="<%= dom_id article %>">
-                <div class="card">
-                    <div class="text-center">
-                        <%= image_tag("products/go.jpg", :alt => "demo" , :class => "img-fluid rounded articles-img") %>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= link_to "#{article.title}", article, class: "text-decoration-none" %></h5>
-                        <p class="card-text articles-desc"><%= article.description %></p>
-                        <span class="text-secondary"><i class="fa-solid fa-user"></i> <%= article.user.name %></span>
-                    </div>
-                </div>
+
+<div class="row mb-3">
+  <div class="container-fluid pt-5 pb-5 bg-light">
+    <div class="row">
+        <div class="col-xl-3 d-none d-xl-block d-xxl-none">
+        
+        </div>
+        <div class="col-xl-6">
+          <div class="container">
+
+            <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
+              <div class="article-info mb-3">
+                <span class="text-secondary h6">Nguyễn Đức Hậu, bạn đang nghĩ gì?</span> 
+              </div>
+              <div class="article-reaction">
+                <a href="<%= new_article_path %>" class="btn btn-light"><i class="fa-light fa-plus"></i> Tạo bài viết</a>
+                <a href="#" class="btn btn-light"><i class="fa-regular fa-image"></i> Ảnh</a>
+                <a href="#" class="btn btn-light"><i class="fa-regular fa-flag"></i> Sự kiện trong đời</a>
+              </div>
             </div>
-        <% end %>
+
+            <% @articles.each do |article| %>
+              <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
+                <div class="article-info">
+                  <span class="text-secondary h6"><%= article.user.name if article.user %></span> 
+                  <small><%= time_ago_in_words(article.created_at) %> ago</small>
+                </div>
+
+                <div class="article-title">
+                  <%= link_to article.title, article_path(article), class: "text-decoration-none" %>
+                </div>
+
+                <div class="article-body">
+                  <%= truncate(article.description, length: 100) %>
+                </div>
+
+                <div class="article-reaction">
+                  <button class="btn btn-light"><i class="fa-sharp fa-regular fa-thumbs-up"></i> Thích</button>
+                  <button class="btn btn-light"><i class="fa-regular fa-comment"></i> Bình luận</button>
+                  <a href=<%= article_path(article)%> class="btn btn-light"><i class="fa-solid fa-circle-info"></i> Chi tiết</a>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+        <div class="col-xl-3 d-none d-xl-block d-xxl-none">
+          
+        </div>
     </div>
+  </div>
 </div>

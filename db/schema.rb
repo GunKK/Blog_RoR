@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_075705) do
     t.integer "user_id"
   end
 
+  # primary key dungf bigint thì rails mới setup auto increment
   create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :articles
 
   get 'sign_up', to: 'users#new'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
   
   resource :users, except: [:new]
 end
