@@ -1,10 +1,6 @@
 class UsersController < ApplicationController 
 
-  # before_action :set_user, only: %i[show edit update] 
-  
-  def index
-    @users = User.all
-  end
+  before_action :set_user, only: [:edit, :update, :show]
 
   def new 
     @user = User.new
@@ -13,24 +9,25 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(user_params)
     if @user.save 
-      flash[:notice] = "Đăng kí thành công? Hi #{@user.name}"
-      redirect_to articles_path
+      flash[:notice] = "Đăng kí thành công? Hi #{@user.name}, Vui lòng đăng nhập lại!"
+      redirect_to login_path
     else
       render 'new' 
     end
   end
 
   def show
-    @articles = User.all
+    @user_articles = @user.articles.all
   end
 
   def edit
   end
 
   def update
+    @user = User.find(session[:user_id])
     if @user.update(user_params)
       flash[:notice] = "Cập nhật tài khoản thành công"
-      redirect_to articles_path
+      redirect_to users_path
     else 
       render 'edit'
     end
@@ -41,7 +38,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password)
     end
 
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
+    def set_user
+      @user = User.find(session[:user_id])
+    end
 end

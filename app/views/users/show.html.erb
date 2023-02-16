@@ -5,10 +5,10 @@
 
 <div class="container-fluid mt-5 mb-5">
     <div class="row mt-3 mb-3 ms-5">
-        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> > Bài viết 
+        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> > Trang của tôi 
     </div>
 
-  <h1 class="text-center mt-3 mb-3">Danh sách bài viết</h1>
+  <h1 class="text-center mt-3 mb-3">Trang của tôi</h1>
 
 <div class="row mb-3">
   <div class="container-fluid pt-5 pb-5 bg-light">
@@ -32,7 +32,7 @@
             </div>
             <% end %>
 
-            <% @articles.each do |article| %>
+            <% @user_articles.each do |article| %>
               <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
                 <div class="article-info">
                   <span class="text-secondary h6"><%= article.user.name if article.user %></span> 

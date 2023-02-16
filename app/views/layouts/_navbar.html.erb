@@ -28,10 +28,10 @@
         <ul class="nav navbar-nav pull-right">
           <% if session[:user_id].nil? %>
             <li class="nav-item">
-              <%= link_to "Đăng kí", sign_up_path, class: "nav-link" %>
+              <%= link_to "Đăng nhập", login_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Đăng nhập", login_path, class: "nav-link" %>
+              <%= link_to "Đăng kí", sign_up_path, class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">
@@ -40,9 +40,8 @@
                   <%= session[:name] %>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                  <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-                  <li><a class="dropdown-item" href="#">Thanh toán</a></li>
+                  <li><%= link_to "Trang của tôi", user_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "Cài đặt", user_edit_path, class: "dropdown-item" %></li>
                   <li><%= link_to "Đăng xuất", logout_path, method: :delete, class: "dropdown-item" %></li>
                 </ul>
               </div>

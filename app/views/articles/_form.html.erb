@@ -10,6 +10,7 @@
     <% end %>
 
     <%= form_for @article do |f| %>
+      <%= f.hidden_field :user_id, value: :session[:user_id]%>
       <p class="mb-3">
         <%= f.label :title, class: "form-label" %><br/>
         <%= f.text_field :title, class: "form-control" %>
@@ -21,7 +22,6 @@
       <p class="mb-3 text-center">
         <%= f.submit class: "btn btn-success" %>
       </p>
-
     <% end %>
   </div>
   <div class="col-4"></div>

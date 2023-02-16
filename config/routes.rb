@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  
-  resource :users, except: [:new]
+  get 'user/edit', to: 'users#edit'
+  get 'user', to: 'users#show'
+  post 'user/edit', to: 'users#update'
+  resource :users, except: [:new, :edit, :update, :show]
 end

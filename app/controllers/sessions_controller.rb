@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
     
     def new
+        if session[:user_id].nil? == false 
+            redirect_to articles_path
+        end
     end 
 
     def create

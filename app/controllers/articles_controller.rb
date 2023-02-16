@@ -21,15 +21,12 @@ class ArticlesController < ApplicationController
     end
 
     def show
-        # @article = Article.find(params[:id])
     end
 
     def edit
-        # @article = Article.find(params[:id])
     end
 
     def update
-        # @article = Article.find(params[:id])
         if @article.update(article_params)
             flash[:notice] = "Cập nhật thành công"
             redirect_to article_path(@article)
@@ -39,7 +36,6 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        # @article = Article.find(params[:id])
         @article.destroy
         flash[:notice] = "Đã xóa bài viết"
         redirect_to articles_path
@@ -52,6 +48,6 @@ class ArticlesController < ApplicationController
         end
 
         def article_params
-            params.required(:article).permit(:title, :description)
+            params.required(:article).permit(:title, :description, :user_id)
         end
 end
