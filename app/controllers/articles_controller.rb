@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
     before_action :set_article, only: %i[ show destroy edit update] 
 
     def index 
-        @articles = Article.all
+        # default 25/page
+        @articles = Article.page(params[:page]).per(6)
     end
 
     def new
