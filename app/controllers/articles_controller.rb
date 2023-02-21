@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
     def index 
         # default 25/page
-        @articles = Article.page(params[:page]).per(6)
+        @articles = Article.page(params[:page]).per(10)
     end
 
     def new

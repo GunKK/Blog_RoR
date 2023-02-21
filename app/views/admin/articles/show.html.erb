@@ -1,0 +1,22 @@
+<% provide(:title, 'Quản lý bài viết') %>
+
+<div class="container mt-5 mb-5">
+
+    <div class="row mt-3 mb-3">
+        <%= link_to "Bài viết", admin_articles_path, class: "text-decoration-none", style: "display: contents" %>
+        > bài viết #<%= @article.id %> 
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6 col-md-12">
+            <%= image_tag("products/go.jpg", :alt => "demo" , :class => "img-fluid rounded articles-img") %>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <p class="h6"><%= @article.title %></p>
+            <p class="text-secondary"><i class="fa-solid fa-user"></i> <%= @article.user.name %></p>
+            <p><%= @article.description %></p>
+            <p class="text-success"><%= @article.updated_at.strftime("Cập nhật: %d-%m-%Y") %></p>
+        </div>
+    </div>
+
+</div>

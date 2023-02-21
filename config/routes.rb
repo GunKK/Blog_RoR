@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'static_pages#contact', as: 'contact'
 
   concern :paginatable do
-    get '(/:page)', action: :index, on: :collection, as: ''
+    get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
   resources :articles, concerns: :paginatable
@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   get 'user', to: 'users#show'
   post 'user/edit', to: 'users#update'
   resource :users, except: [:new, :edit, :update, :show]
+
+  namespace :admin do
+    get 'admin', to: 'admin#index'
+    resources :articles, except: [:new, :create], concerns: :paginatable
+    resources :users, only: [:index, :show, :delete]
+  end
 end
