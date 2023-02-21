@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'admin', to: 'admin#index'
     resources :articles, except: [:new, :create], concerns: :paginatable
-    resources :users, only: [:index, :show, :delete]
+    resources :users
   end
 end

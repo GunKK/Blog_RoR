@@ -1,0 +1,40 @@
+<% provide(:title, 'Quản lý thành viên') %>
+<div class="container">
+    <h1>Quản lý thành viên admin</h1>
+
+    <% if notice.nil? == false %>
+        <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+    
+    <table class="table">
+        <thead class="table-warning">
+            <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% i = 1 %>
+            <% @users.each do |user| %>
+                <tr>
+                    <td><%= i%></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <%= link_to 'Xem', admin_user_path(user), class: "btn btn-primary mt-1 d-block" %>
+                        <%= link_to 'Sửa', edit_admin_user_path(user), class: "btn btn-warning mt-1 d-block" %>
+                        <%= button_to "Xóa bài viết", admin_user_path(user), method: :delete, class: "btn btn-danger mt-1 w-100" , data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+                    </td>
+                </tr>
+            <% i +=1 %>
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-2">
+        <%= paginate @users %>
+    </div>
+
+</div>

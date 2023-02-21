@@ -25,7 +25,6 @@ class Admin::ArticlesController < ApplicationController
     def destroy
         @article.destroy
         flash[:notice] = "Đã xóa bài viết"
-        logger.debug
         redirect_to admin_articles_path
     end
 
