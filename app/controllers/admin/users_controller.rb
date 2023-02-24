@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
     layout 'layouts/rails_admin/application'
-
+    
+    before_action :require_user, :check_admin
     before_action :set_user, only: %i[ show destroy edit update] 
     
     def index

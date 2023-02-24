@@ -7,9 +7,9 @@
     <div class="col-4"></div>
     <div class="col-4">
 
-      <% if notice.nil? %>
-        <div class="text-danger"><%= notice %></div>
-      <% end%>
+      <% if notice.nil? == false %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
 
       <%= form_for(:session, role: "form", url: login_path) do |f| %>
         <p class="mb-3">

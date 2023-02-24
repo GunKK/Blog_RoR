@@ -1,19 +1,20 @@
 class SessionsController < ApplicationController
-    
+
     def new
-        if session[:user_id].nil? == false 
-            redirect_to articles_path
-        end
     end 
 
     def create
         user = User.find_by(email: params[:session][:email].downcase)
         
         if user && user.authenticate(params[:session][:password])
-            session[:user_id] = user.id
-            session[:name] = user.name
-            flash[:notice] = "Hi, #{user.name}"
-            redirect_to articles_path
+            if user.is_admin == 0
+                session[:user_id] = user.id
+                flash[:notice] = "Hi, #{user.name}"
+                redirect_to articles_path
+            else 
+                session[:user_id] = user.id
+                redirect_to admin_articles_path
+            end
         else
             flash.now[:notice] = "Đăng nhập thất bại ! " 
             render 'new'
@@ -25,5 +26,5 @@ class SessionsController < ApplicationController
         flash[:notice] = "Đăng xuất thành công"
         redirect_to login_path
     end
-    
+
 end

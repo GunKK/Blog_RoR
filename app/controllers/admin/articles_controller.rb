@@ -1,8 +1,9 @@
 class Admin::ArticlesController < ApplicationController
     layout 'layouts/rails_admin/application'
 
+    before_action :require_user, :check_admin
     before_action :set_article, only: %i[ show destroy edit update] 
-    
+
     def index
         @articles = Article.page(params[:page]).per(10)
     end

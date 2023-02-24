@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
     layout 'layouts/rails_admin/application'
 
+    before_action :require_user, :check_admin
     before_action :set_category, only: %i[ destroy edit update] 
     
     def index
