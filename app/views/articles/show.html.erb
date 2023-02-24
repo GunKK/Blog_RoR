@@ -1,11 +1,12 @@
+<% provide(:title, 'Chi tiết bài viết') %>
 <div class="container mt-5 mb-5">
     <% if notice.nil? == false %>
         <div class="alert alert-success row"><%= notice %></div>
     <% end %>
 
     <div class="row mt-3 mb-3">
-        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %> >
-        <%= link_to "Bài viết", articles_path, class: "text-decoration-none", style: "display: contents" %> 
+        <%= link_to "Trang chủ", root_path, class: "text-decoration-none", style: "display: contents" %>
+        > <%= link_to "Bài viết", articles_path, class: "text-decoration-none", style: "display: contents" %>
         > bài viết #<%= @article.id %> 
     </div>
 
@@ -15,17 +16,21 @@
         </div>
         <div class="col-xl-6 col-md-12">
             <p class="h6"><%= @article.title %></p>
+            <p class="text-secondary"><i class="fa-solid fa-user"></i> <%= @article.user.name %></p>
             <p><%= @article.description %></p>
+            <p class="text-success"><%= @article.updated_at.strftime("Cập nhật: %d-%m-%Y") %></p>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <%= link_to "Cập nhật", edit_article_path(@article), class: "btn btn-warning"%>
+    <% if session[:user_id].nil? == false && session[:user_id] == @article.user.id %> 
+        <div class="row">
+            <div class="col">
+                <%= link_to "Cập nhật", edit_article_path(@article), class: "btn btn-warning"%>
+            </div>
+            <div class="col">
+                <%# Lỗi không hiện box modal do chưa add jquery %>
+                <%= button_to "Xóa bài viết", @article, method: :delete, class: "btn btn-outline-danger", data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+            </div>
         </div>
-        <div class="col">
-            <%# Lỗi không hiện box modal do chưa add jquery %>
-            <%= button_to "Xóa bài viết", @article, method: :delete, class: "btn btn-outline-danger", data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
-        </div>
-    </div>
+    <% end %>
 </div>

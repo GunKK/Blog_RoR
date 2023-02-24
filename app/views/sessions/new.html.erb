@@ -1,0 +1,32 @@
+<div class="container mt-5 mb-5">
+  <div class="row mb-3">
+    <h1 class="text-center">Đăng nhập</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+
+      <% if notice.nil? == false %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+
+      <%= form_for(:session, role: "form", url: login_path) do |f| %>
+        <p class="mb-3">
+          <%= f.label :email, class: "form-label" %><br/>
+          <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
+        </p>
+        <p class="mb-3">
+          <%= f.label :password, class: "form-label" %><br/>
+          <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+        </p>
+        <p class="mb-3 text-center">
+          <%= f.submit "Đăng nhập", class: "btn btn-success" %>
+        </p>`
+
+      <% end %>
+
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

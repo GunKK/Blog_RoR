@@ -26,28 +26,28 @@
           </div>
         </form>
         <ul class="nav navbar-nav pull-right">
-            <%# <li class="nav-item">
-                <a class="nav-link" href="#">Đăng ký</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Đăng nhập</a>
-            </li> %>
+          <% if logged_in? %>
             <li class="nav-item">
               <div class="dropdown">
                 <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Nguyễn Đức Hậu
+                  <%= current_user.name %>
+                  <%= !current_user.is_admin %>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Tài khoản</a></li>
-                  <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-                  <li><a class="dropdown-item" href="#">Thanh toán</a></li>
-                  <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                  <li><%= link_to "Trang của tôi", user_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "Cài đặt", user_edit_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "Đăng xuất", logout_path, method: :delete, class: "dropdown-item" %></li>
                 </ul>
               </div>
             </li>
+          <% else %>
             <li class="nav-item">
-              <a class="nav-link" href="#">Đăng xuất</a>
+              <%= link_to "Đăng nhập", login_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to "Đăng kí", sign_up_path, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
   </div>

@@ -81,3 +81,40 @@
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
 }
+
+.article-wrap {
+    background-color: #fff;
+}
+
+.article-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+  
+.article-body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.article-info {
+
+}
+
+.article-reaction {
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    padding: 8px 0;
+    justify-content: space-around;
+}
+
+.article-reaction button {
+    flex: 1;
+    margin: 0 4px;
+}
+
+.article-reaction a {
+    flex: 1;
+    margin: 0 4px;
+    width: 33.33%;
+}

@@ -1,27 +1,11 @@
-class ArticlesController < ApplicationController
+class Admin::ArticlesController < ApplicationController
+    layout 'layouts/rails_admin/application'
 
-    before_action :require_user, :check_user
+    before_action :require_user, :check_admin
     before_action :set_article, only: %i[ show destroy edit update] 
 
-    def index 
-        # default 25/page
+    def index
         @articles = Article.page(params[:page]).per(10)
-    end
-
-    def new
-        @article = Article.new
-    end
-    
-    def create
-        @user = User.find(session[:user_id])
-        @article = Article.new(article_params)
-        @article.user_id = @user.id
-        if @article.save 
-          flash[:notice] = "Tạo bài viết thành công"
-          redirect_to articles_path(@article)
-        else 
-          render 'new'
-        end
     end
 
     def show
@@ -33,7 +17,7 @@ class ArticlesController < ApplicationController
     def update
         if @article.update(article_params)
             flash[:notice] = "Cập nhật thành công"
-            redirect_to article_path(@article)
+            redirect_to admin_article_path(@article)
         else
             render "edit" 
         end
@@ -42,11 +26,10 @@ class ArticlesController < ApplicationController
     def destroy
         @article.destroy
         flash[:notice] = "Đã xóa bài viết"
-        redirect_to articles_path
+        redirect_to admin_articles_path
     end
 
     private
-
         def set_article
             @article = Article.find(params[:id])
         end
