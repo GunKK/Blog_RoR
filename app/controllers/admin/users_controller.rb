@@ -44,6 +44,6 @@ class Admin::UsersController < ApplicationController
         end
 
         def user_params
-            params.required(:article).permit(:name, :email, :password ,:is_admin)
+            params.required(:user).permit(:name, :email, :password ,:is_admin)
         end
 end

@@ -1,0 +1,35 @@
+<% provide(:title, 'Quản lý danh mục') %>
+<div class="container">
+    <h1>Quản lý danh mục admin</h1>
+    <div class="mt-2 mb-2">
+        <%= link_to 'Thêm', new_admin_category_path, class: "btn btn-primary" %>
+    </div>
+    <table class="table">
+        <thead class="table-warning">
+            <tr>
+                <th>#id</th>
+                <th>Tên</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% i=1 %>
+            <% @categories.each do |category| %>
+                <tr>
+                    <td><%= i %></td>
+                    <td><%= truncate category.name, length: 20 %></td>
+                    <td>
+                        <%= link_to 'Sửa', edit_admin_category_path(category), class: "btn btn-warning" %>
+                        <%= button_to "Xóa", admin_category_path(category), method: :delete, class: "btn btn-danger mt-1" , data: {confirm: "Bạn có chắc chắn muốn xóa? "}  %>
+                    </td>
+                </tr>
+                <% i+=1 %>
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-2">
+        <%= paginate @categories %>
+    </div>
+
+</div>

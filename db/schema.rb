@@ -10,22 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_19_140745) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_135959) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.integer "category_id"
+  end
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+    t.string "name", null: false
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest", null: false
-    t.boolean "is_admin", default: false
+    t.boolean "is_admin", default: false, null: false
   end
 
 end

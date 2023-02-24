@@ -21,5 +21,6 @@ Rails.application.routes.draw do
     get 'admin', to: 'admin#index'
     resources :articles, except: [:new, :create], concerns: :paginatable
     resources :users
+    resources :categories, except: [:show], concerns: :paginatable
   end
 end

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4">
+    <% if @category.errors.any? %>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_for [:admin, @category] do |f| %>
+      <p class="mb-3">
+        <%= f.label :name, class: "form-label" %><br/>
+        <%= f.text_field :name, class: "form-control" %>
+      </p>
+      <p class="mb-3 text-center">
+        <%= f.submit class: "btn btn-success" %>
+      </p>
+    <% end %>
+  </div>
+  <div class="col-4"></div>
+</div>
