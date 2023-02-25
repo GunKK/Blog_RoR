@@ -13,12 +13,12 @@ class ArticlesController < ApplicationController
     end
     
     def create
-        @user = User.find(session[:user_id])
+        @user = current_user
         @article = Article.new(article_params)
         @article.user_id = @user.id
         if @article.save 
           flash[:notice] = "Tạo bài viết thành công"
-          redirect_to articles_path(@article)
+          redirect_to article_path(@article)
         else 
           render 'new'
         end
@@ -52,6 +52,6 @@ class ArticlesController < ApplicationController
         end
 
         def article_params
-            params.required(:article).permit(:title, :description)
+            params.required(:article).permit(:title, :description, :category_id)
         end
 end
