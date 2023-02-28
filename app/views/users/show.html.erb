@@ -13,7 +13,11 @@
       <div><%= gravatar_for @user %></div>
       <div class="ms-2">
         <div class="h4"><%= @user.name %></div>
-        <div class="text-secondary h6"><a href="#" class="text-decoration-none">50 bạn bè</a></div>
+        <% if @friend_count > 0 %>
+          <div class="text-secondary h6"><%= link_to "#{@friend_count} bạn bè", friend_path, class: "text-decoration-none" %></div>
+        <% else %>
+          <div class="text-secondary h6"><%= @friend_count %> bạn bè </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -27,7 +31,7 @@
           <div class="col-xl-6">
             <div class="container">
 
-              <% if logged_in? %>
+            <% if current_user == @user %>
               <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
                 <div class="article-info mb-3">
                   <span class="text-secondary h6"><%= current_user.name %>, bạn đang nghĩ gì?</span> 
@@ -40,27 +44,31 @@
               </div>
               <% end %>
 
-              <% @user_articles.each do |article| %>
-                <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
-                  <div class="article-info">
-                    <span class="text-secondary h6"><%= article.user.name if article.user %></span> 
-                    <small><%= time_ago_in_words(article.created_at) %> ago</small>
-                  </div>
+              <% if @user_articles.size > 0 %>
+                <% @user_articles.each do |article| %>
+                  <div class="row article-wrap mt-3 shadow p-3 bg-body rounded">
+                    <div class="article-info">
+                      <span class="text-secondary h6"><%= article.user.name if article.user %></span> 
+                      <small><%= time_ago_in_words(article.created_at) %> ago</small>
+                    </div>
 
-                  <div class="article-title">
-                    <%= link_to article.title, article_path(article), class: "text-decoration-none" %>
-                  </div>
+                    <div class="article-title">
+                      <%= link_to article.title, article_path(article), class: "text-decoration-none" %>
+                    </div>
 
-                  <div class="article-body">
-                    <%= truncate(article.description, length: 100) %>
-                  </div>
+                    <div class="article-body">
+                      <%= truncate(article.description, length: 100) %>
+                    </div>
 
-                  <div class="article-reaction">
-                    <button class="btn btn-light"><i class="fa-sharp fa-regular fa-thumbs-up"></i> Thích</button>
-                    <button class="btn btn-light"><i class="fa-regular fa-comment"></i> Bình luận</button>
-                    <a href=<%= article_path(article)%> class="btn btn-light"><i class="fa-solid fa-circle-info"></i> Chi tiết</a>
+                    <div class="article-reaction">
+                      <button class="btn btn-light"><i class="fa-sharp fa-regular fa-thumbs-up"></i> Thích</button>
+                      <button class="btn btn-light"><i class="fa-regular fa-comment"></i> Bình luận</button>
+                      <a href=<%= article_path(article)%> class="btn btn-light"><i class="fa-solid fa-circle-info"></i> Chi tiết</a>
+                    </div>
                   </div>
-                </div>
+                <% end %>
+              <% else %>
+                <div class="text-center text-danger h5">Chưa có bài viết nào</div>
               <% end %>
 
             </div>

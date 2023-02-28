@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX }
   has_secure_password
+
+  has_many :friendships
+  has_many :friend, through: :friendships
+
+  #check current_user and orther user are friend?
+  def friend_with?(other_user)
+    friendships.find_by(friend_id: other_user.id)
+  end
 end

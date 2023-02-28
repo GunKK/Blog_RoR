@@ -12,10 +12,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  get 'user/edit', to: 'users#edit'
-  get 'user', to: 'users#show'
-  post 'user/edit', to: 'users#update'
-  resource :users, except: [:new, :edit, :update, :show]
+  get 'users/:id/friend', to: 'users#friend', as: 'friend'
+  resources :users, except: [:new ]
 
   namespace :admin do
     get 'admin', to: 'admin#index'
