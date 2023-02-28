@@ -1,6 +1,6 @@
 class UsersController < ApplicationController 
 
-  before_action :require_user, :check_user
+  before_action :require_user, :check_user, except: %i[new create]
   before_action :set_user, only: %i[ show friend destroy] 
   before_action :set_current_user, only: %i[ edit update] 
 
