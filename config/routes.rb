@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get 'users/:id/friend', to: 'users#friend', as: 'friend'
   resources :users, except: [:new ]
 
+  post 'friend/create/:friend_id', to: 'friendships#create', as: 'friendships'
+  delete 'friend/destroy/:friend_id', to: 'friendships#destroy', as: 'removefriend'
+
   namespace :admin do
     get 'admin', to: 'admin#index'
     resources :articles, except: [:new, :create], concerns: :paginatable

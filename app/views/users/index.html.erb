@@ -28,13 +28,14 @@
                     <% current_user.friend.each do |friend| %>
                       <% if friend.id == user.id %>
                         <%= link_to "View profile", user_path(user), class: "text-decoration-none btn btn-success" %>
-                        <button class="btn btn-danger">Hủy kết bạn</button>
+                        <%= button_to "Hủy kết bạn", removefriend_path(:friend_id => user), :method => :delete, class: "text-decoration-none btn btn-danger d-content" %>
                       <% end %>
                     <% end %>
                   </div>
                 <% else %>
                   <%= link_to "View profile", user_path(user), class: "text-decoration-none btn btn-success" %>
-                  <button class="btn btn-primary">Thêm bạn</button>
+                  <%# dùng button_to thay vì link_to, vì rails7 don't create a inline form for simulate the post request via link, trong khi button_to tạo ra form method= "post" %>
+                  <%= button_to "Thêm bạn", friendships_path(:friend_id => user), :method => :post, class: "text-decoration-none btn btn-primary d-content" %>
                 <% end %>
 
             </div>

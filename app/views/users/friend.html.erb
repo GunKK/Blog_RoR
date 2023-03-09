@@ -30,7 +30,7 @@
             <div class="h4"><%= friend.name %></div>
             <div class="friend-action">
               <%= link_to "View profile", user_path(friend), class: "text-decoration-none btn btn-success" %>
-              <button class="btn btn-danger">Hủy kết bạn</button>
+              <%= button_to "Hủy kết bạn", removefriend_path(:friend_id => friend), :method => :delete, class: "text-decoration-none btn btn-danger d-content" %>
             </div>
           </div>
         </div>
